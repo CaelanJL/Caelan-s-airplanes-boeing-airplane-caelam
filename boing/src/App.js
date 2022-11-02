@@ -1,17 +1,25 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
+import {Outlet} from 'react-router-dom';
+import navBar from '../navBar';
+
 
 function App() {
+  const layout = () => {
+    return(
+      <>
+        <navBar />
+        <Outlet />
+      </>
+    );
+  };
+
   function searchForm() {
 
   }
 
-  function navBar() {
-
-  }
-
   function inputForm() {
-    
+
   }
 
 
