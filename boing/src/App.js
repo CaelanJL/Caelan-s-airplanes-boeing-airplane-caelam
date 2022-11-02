@@ -2,6 +2,19 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
 function App() {
+  function searchForm() {
+
+  }
+
+  function navBar() {
+
+  }
+
+  function inputForm() {
+    
+  }
+
+
   return (
     <div className="App">
       <button type="button" className="btn btn-primary">Primary</button>
