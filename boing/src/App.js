@@ -1,11 +1,9 @@
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './pages/Layout'
 import Home from './pages/Home';
 import InputForm from './pages/Input';
 import SearchForm from './pages/Search';
-
 
 function App() {
   return(

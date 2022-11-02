@@ -1,9 +1,14 @@
 import React, {useState} from 'react'
+import Autoclave from './Autoclave';
+import Part from './Part';
+import addBatch from '../DB';
 
 function InputForm(){
 
+  // Keep current data state
   const [data, setData] = useState(false);
 
+  // Update data from given json file
   const uploadFile = (e) => {
     const fileReader = new FileReader()
     fileReader.readAsText(e.target.files[0], "UTF-8");
@@ -13,113 +18,41 @@ function InputForm(){
     };
 	};
 
+  // Add data to database
+  const onSubmit = () => {
+    addBatch(data["RunDetails"], data["PartInformation"])
+  }
+
+  // Return html
   return(
-    <div>
-      <label className="form-label">Input JSON file</label>
-      <form className="mb-3 input-group">      
-        <input type="file" className="form-control" id="formFile" accept=".json" onChange={uploadFile}></input>
-      </form>
-
-      <h3>OR</h3>
-
-      <form className="mb-3 container"> 
-        <label className="form-label">Input manually</label>
-
-        <div className="row">
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder={data ? data["RunDetails"]["LoadNumber"] : "AC2-07337-anon"}></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="Test"></input>
-          </div>
-
-        </div>  
-
-        <div className="row">
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
+    <div className='container'>
+      <div className='row justify-content-md-center mt-3'>
+        <h2 className='col-md-auto'>Upload a .json file</h2>
+      </div>
+      <form className='row input-group justify-content-md-center my-2'>  
+        <div className='col-lg-4'>    
+          <input type='file' className='form-control' accept='.json' onChange={uploadFile}></input>
         </div>
-
-        <div className="row">
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-          <div className="input-group col">
-            <div className="input-group-prepend">
-              <span className="input-group-text" >nombar</span>
-            </div>
-            <input className="" type="text" placeholder="AC2-07337-anon"></input>
-          </div>
-
-        </div> 
-
-        {/* <label className="col-lg-2 col-form-label">Autoclave title</label>
-        <input className="col-lg" type="text" placeholder="AC2-07337-anon"></input> */}
-
-        {/* <label className="col-lg-2 col-form-label">nombar</label> */}
-        
-
-        {/* <label className="col-lg-2 col-form-label">Autoclave title</label>
-        <input className="" type="text" placeholder="AC2-07337-anon"></input>
-
-        <label className="col-lg-2 col-form-label">Autoclave title</label>
-        <input className="col-lg" type="text" placeholder="AC2-07337-anon"></input>
-
-        <label className="col-lg-2 col-form-label">Autoclave title</label>
-        <input className="col-lg" type="text" placeholder="AC2-07337-anon"></input> */}
       </form>
-
+      <div className='row justify-content-md-center mt-3' >
+        <h3 className='col-md-auto'>{data ? "Auto Clave" : ""}</h3>
+      </div>
+      <div className='row justify-content-md-center'>
+        {data ? <Autoclave data={data["RunDetails"]}/> : <></>}
+      </div>
+      <div className='row justify-content-md-center mt-3'>
+        <h3 className='col-md-auto'>{data ? "Parts" : ""}</h3>
+      </div>
+      <div className='row justify-content-md-center'>
+        {data ? data["PartInformation"].map(part => (
+          <Part data={part}/>
+        )) : <></>}
+      </div>
+      <div className='row justify-content-md-center'>
+        {data ? <button type="button" onClick={onSubmit} class="btn btn-success btn-lg w-25 my-4">Success</button> : <></>}
+      </div>
     </div>
-    
-    
-    )
-}//
+  )
+}
 
 export default InputForm
