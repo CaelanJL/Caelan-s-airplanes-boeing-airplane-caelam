@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 
-function navBar() {
+function Navbar() {
     return(
       <nav>
         <ul>
@@ -20,4 +20,4 @@ function navBar() {
     );
   }
 
-  export default navBar;
+  export default Navbar;

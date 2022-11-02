@@ -1,9 +1,9 @@
 import React from 'react'
 
-function InputForm(){
+function SearchForm(){
     return (
         <div></div>
     )
 }
 
-export default InputForm
+export default SearchForm
