@@ -1,4 +1,5 @@
-const sqlite3 = require('sqlite3').verbose();
+// const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = "wee"
 
 function addBatch(run_details, parts) {
 

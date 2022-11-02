@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Autoclave from './Autoclave';
 import Part from './Part';
-import addBatch from '../DB';
+// import addBatch from '../DB';
 
 function InputForm(){
 
@@ -20,7 +20,7 @@ function InputForm(){
 
   // Add data to database
   const onSubmit = () => {
-    addBatch(data["RunDetails"], data["PartInformation"])
+    // addBatch(data["RunDetails"], data["PartInformation"])
   }
 
   // Return html
