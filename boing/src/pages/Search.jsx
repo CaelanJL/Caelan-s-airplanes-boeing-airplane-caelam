@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
+import Autoclave from './Autoclave';
+import Part from './Part';
 
 function SearchForm(){
+    const [results, setResults] = useState({})
     const [formData, setFormData] = useState({})
     const onChange = (e) => {
         formData[e.target.id] = e.target.value
@@ -15,7 +18,12 @@ function SearchForm(){
         })
     };
 
+    
+
+
     return (
+        <div>
+            <div>
         <form>
             <div class = 'row'>
                 <div class = 'form-group col-md-6'>
@@ -42,6 +50,41 @@ function SearchForm(){
                 </div>
             </div>
         </form>
+            </div>
+
+
+
+        <div>
+            <table class = 'table'>
+                <thead>
+                    <tr>
+                        <th>Part Name</th>
+                        <th>Part Number</th>
+                        <th>Part Description</th>
+                        <th>Autoclave</th>
+                        <th>Load Number</th>
+                        <th>Run Recipe</th>
+                        <th>Operator Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+        
+
+
     )
 }
 
