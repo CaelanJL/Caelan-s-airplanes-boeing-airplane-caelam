@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 app.use(bodyParser.json());
 app.use(cors({
-  origin: 'https://localhost:3001'
+  origin: 'http://localhost:3001'
 }));
 const port = 3000 
 const db = new sqlite3.Database('./database/partinfo.db');
