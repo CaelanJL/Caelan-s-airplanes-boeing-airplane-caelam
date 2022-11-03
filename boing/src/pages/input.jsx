@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import Autoclave from './Autoclave';
 import Part from './Part';
-import addBatch from '../DB';
 
 function InputForm(){
 
@@ -20,7 +19,15 @@ function InputForm(){
 
   // Add data to database
   const onSubmit = () => {
-    addBatch(data["RunDetails"], data["PartInformation"])
+    fetch('http://localhost:3000/add_load', {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(data)
+    }).then(response=>response.json()).then(data=>{
+      console.log(data)
+    })
+    setData(false)
   }
 
   // Return html
@@ -49,7 +56,7 @@ function InputForm(){
         )) : <></>}
       </div>
       <div className='row justify-content-md-center'>
-        {data ? <button type="button" onClick={onSubmit} class="btn btn-success btn-lg w-25 my-4">Success</button> : <></>}
+        {data ? <button type="button" onClick={onSubmit} className="btn btn-success btn-lg w-25 my-4">Submit</button> : <></>}
       </div>
     </div>
   )
