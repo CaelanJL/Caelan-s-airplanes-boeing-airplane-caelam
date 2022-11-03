@@ -5,7 +5,14 @@ function SearchForm(){
     const onChange = (e) => {
         formData[e.target.id] = e.target.value
         setFormData(formData)
-        console.log(formData)
+        fetch('http://localhost:3000/get_parts', {
+            method: 'post',
+            credentials: 'same-origin',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        }).then(response=>response.json()).then(data=>{
+            console.log(data)
+        })
     };
 
     return (
@@ -17,8 +24,7 @@ function SearchForm(){
                 </div>
                 <div class = 'form-group col-md-6'>
                     <label for = 'acNUM'>Autoclave Number</label>
-                    <select id = 'acNUM' onChange={onChange}>
-                        <option selected>Choose Autoclave</option>
+                    <select id = 'acNUM' defaultValue='Autoclave #2' onChange={onChange}>
                         <option value = 'Autoclave #2'>2</option>
                         <option value = 'Autoclave #3'>3</option>
                         <option value = 'Autoclave #4'>4</option>
@@ -34,9 +40,6 @@ function SearchForm(){
                     <label for = 'partNUM'>Part Number</label>
                     <input type = 'text' onChange={onChange} id = 'partNUM' class = 'form-control' placeholder='e.g. ACME-111'></input>
                 </div>
-            </div>
-            <div class="d-grid gap-2">
-                <button type = 'button' class = 'btn btn-primary'>Filter</button>
             </div>
         </form>
     )

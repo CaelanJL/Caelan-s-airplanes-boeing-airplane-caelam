@@ -4,9 +4,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 app.use(bodyParser.json());
-app.use(cors({
-  origin: 'http://localhost:3001'
-}));
+app.use(cors({origin: 'http://localhost:3001'}));
 const port = 3000 
 const db = new sqlite3.Database('./database/partinfo.db');
 
@@ -52,6 +50,23 @@ app.post('/add_load', (req, res) => {
     );
   }
   res.status(200).json('Added load correctly')
+});
+
+app.post('/get_parts', (req, res) => {
+  let sql = "SELECT * FROM part"
+  
+  db.all(sql, [], (err, result) => {
+    if (err) {
+      return console.error(err.message);
+    }
+    try {
+      console.log(result)
+      return res.status(200).json({result});
+    } 
+    catch (e) {
+      return
+    }
+  });  
 });
 
 app.listen(port, () => {
