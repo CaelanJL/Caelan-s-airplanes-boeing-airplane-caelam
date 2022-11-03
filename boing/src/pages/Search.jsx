@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import Autoclave from './Autoclave';
-import Part from './Part';
 
 function SearchForm(){
     const [results, setResults] = useState([])
