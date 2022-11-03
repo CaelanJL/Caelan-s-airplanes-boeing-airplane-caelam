@@ -2,9 +2,10 @@ import React from 'react'
 
 function Home(){
     return (
-        <div>
-            <h1>Welcome home my children</h1>
+        <div class = 'container justify-content-center'>
+            <h1 class = 'justify-content-centre text-center'><b><i>We are the Heros and this is our Journey</i></b></h1>
         </div>
+
     )
 }
 
