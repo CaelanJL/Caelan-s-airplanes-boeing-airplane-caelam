@@ -53,14 +53,17 @@ app.post('/add_load', (req, res) => {
 });
 
 app.post('/get_parts', (req, res) => {
-  let sql = "SELECT * FROM part"
+  let sql = "SELECT * FROM part WHERE"
+  sql += " p_num LIKE '%" + req.body["partNUM"] + "%'"
+  sql += "AND load_num LIKE '%" + req.body["loadNUM"] + "%'"
+  sql += "AND load_num LIKE '" + req.body["acNUM"] + "%'"
+  console.log(sql)
   
   db.all(sql, [], (err, result) => {
     if (err) {
       return console.error(err.message);
     }
     try {
-      console.log(result)
       return res.status(200).json({result});
     } 
     catch (e) {
