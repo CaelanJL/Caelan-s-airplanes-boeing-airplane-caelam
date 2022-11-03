@@ -35,6 +35,7 @@ function SearchForm(){
                         <div className='form-group col-md-6'>
                             <label for='acNUM'>Autoclave Number</label>
                             <select className='form-select col-md-6' id='acNUM' defaultValue='Autoclave #2' onChange={onChange}>
+                                <option value=''>ALL</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
                                 <option value='4'>4</option>
@@ -53,9 +54,9 @@ function SearchForm(){
                     </div>
                 </form>
             </div>
-            <div className='row justify-content-md-center text-center my-3'>
+            <div className='row justify-content-md-center text-center my-3' style={{height: '60vh', overflow: 'auto'}}>
                 {results.length ? <table className='table'>
-                    <thead>
+                    <thead className='bg-light' style={{position: 'sticky', top: '0'}}>
                         <tr>
                             <th>Part Number</th>
                             <th>Part Description</th>
