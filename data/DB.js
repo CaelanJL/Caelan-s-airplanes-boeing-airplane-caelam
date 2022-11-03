@@ -53,10 +53,11 @@ app.post('/add_load', (req, res) => {
 });
 
 app.post('/get_parts', (req, res) => {
-  let sql = "SELECT * FROM part WHERE"
+  let sql = "SELECT * FROM part INNER JOIN autoclave ON part.load_num = autoclave.load_num WHERE"
   sql += " p_num LIKE '%" + req.body["partNUM"] + "%'"
-  sql += "AND load_num LIKE '%" + req.body["loadNUM"] + "%'"
-  sql += "AND load_num LIKE '" + req.body["acNUM"] + "%'"
+  sql += "AND autoclave.load_num LIKE '%" + req.body["loadNUM"] + "%'"
+  sql += "AND autoclave.load_num LIKE '" + req.body["acNUM"] + "%'"
+  sql += "AND operator_name LIKE '" + req.body["operatorName"] + "%'"
   console.log(sql)
   
   db.all(sql, [], (err, result) => {

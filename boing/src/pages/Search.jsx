@@ -3,6 +3,8 @@ import React, {useState} from 'react'
 function SearchForm(){
     const [results, setResults] = useState([])
     const [formData, setFormData] = useState({ operatorName: '', loadNUM: '', partNUM: '',  acNUM: '' })
+    
+    // When one of the text inputs is changes
     const onChange = (e) => {
         formData[e.target.id] = e.target.value
         setFormData(formData)
@@ -51,8 +53,8 @@ function SearchForm(){
                     </div>
                 </form>
             </div>
-            <div className='row justify-content-md-center'>
-                <table className='table'>
+            <div className='row justify-content-md-center text-center my-3'>
+                {results.length ? <table className='table'>
                     <thead>
                         <tr>
                             <th>Part Number</th>
@@ -63,20 +65,23 @@ function SearchForm(){
                             <th>Operator Name</th>
                         </tr>
                     </thead>
-                    {results.map(result => (
                     <tbody>
-                        <tr>
-                            <td>{result["p_num"]}</td>
-                            <td>{result["p_desc"]}</td>
-                            <td>#{result["load_num"].toString()[0]}</td>
-                            <td>{result["load_num"].toString().substring(1)}</td>
-                            <td>example</td>
-                            <td>example</td>
-                        </tr>
+                        {results.map(result => (
+                            <tr>
+                                <td>{result["p_num"]}</td>
+                                <td>{result["p_desc"]}</td>
+                                <td>#{result["load_num"].toString()[0]}</td>
+                                <td>{result["load_num"].toString().substring(1)}</td>
+                                <td>{result["run_recipe"]}</td>
+                                <td>{result["operator_name"]}</td>
+                            </tr>
+                        
+                        ))}
                     </tbody>
-                    ))}
-                    
                 </table>
+                :
+                <h2>No results, please try again</h2>
+                }
             </div>
         </div>
     )
