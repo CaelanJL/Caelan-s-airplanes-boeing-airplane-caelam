@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 function SearchForm(){
+    const [formData, setFormData] = useState({operatorName:false, autoclaveNumber:false, loadNumber:false, partNumber:false});
+
     return (
         <form>
             <div class = 'row'>
@@ -12,9 +14,9 @@ function SearchForm(){
                     <label for = 'acNUM'>Autoclave Number</label>
                     <select id = 'acNum'>
                         <option selected>Choose Autoclave</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
+                        <option value = 'Autoclave #2'>2</option>
+                        <option value = 'Autoclave #3'>3</option>
+                        <option value = 'Autoclave #4'>4</option>
                     </select>
                 </div>
             </div>
