@@ -3,7 +3,7 @@ import Autoclave from './Autoclave';
 import Part from './Part';
 
 function SearchForm(){
-    const [results, setResults] = useState({})
+    const [results, setResults] = useState([])
     const [formData, setFormData] = useState({})
     const onChange = (e) => {
         formData[e.target.id] = e.target.value
@@ -14,7 +14,7 @@ function SearchForm(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(formData)
         }).then(response=>response.json()).then(data=>{
-            console.log(data)
+            setResults(data.results)
         })
     };
 
