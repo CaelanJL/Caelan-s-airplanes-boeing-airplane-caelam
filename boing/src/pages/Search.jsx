@@ -42,7 +42,7 @@ function SearchForm(){
                     <div className='row'>
                         <div className='form-group col-md-6'>
                             <label for='loadNUM'>Load Number</label>
-                            <input type='number' onChange={onChange} id='loadNUM' className='form-control' pattern='\b\d{5}\b' placeholder='e.g. 8543'></input>
+                            <input type='number' onChange={onChange} id='loadNUM' className='form-control' placeholder='e.g. 8543'></input>
                         </div>
                         <div className='form-group col-md-6'>
                             <label for='partNUM'>Part Number</label>
